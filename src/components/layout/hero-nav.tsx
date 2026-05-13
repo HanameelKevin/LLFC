@@ -57,6 +57,29 @@ export function Navbar() {
           </button>
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="absolute top-full left-4 right-4 mt-2 p-4 rounded-3xl glass-card md:hidden flex flex-col gap-2 pointer-events-auto"
+        >
+          {['Sundays', 'Ministries', 'Events', 'About'].map((item) => (
+            <a
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              onClick={() => setIsOpen(false)}
+              className="p-3 text-sm font-medium text-white/70 hover:text-white hover:bg-white/5 rounded-xl transition-colors"
+            >
+              {item}
+            </a>
+          ))}
+          <Button variant="primary" className="w-full mt-2 justify-center">
+            Watch Online
+          </Button>
+        </motion.div>
+      )}
     </motion.nav>
   );
 }
@@ -117,8 +140,8 @@ export function Hero() {
       </div>
 
       {/* Floating Action Cards */}
-      <div className="absolute bottom-12 left-0 right-0 hidden lg:block">
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-3 gap-6">
+      <div className="absolute bottom-4 lg:bottom-12 left-0 right-0 w-full overflow-x-auto pb-4" style={{ scrollbarWidth: 'none' }}>
+        <div className="w-max lg:w-full lg:max-w-6xl mx-auto px-4 lg:px-6 flex lg:grid lg:grid-cols-3 gap-4 lg:gap-6">
           {[
             {
               icon: <Heart className="text-primary" />,
