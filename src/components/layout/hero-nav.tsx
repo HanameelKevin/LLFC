@@ -16,20 +16,46 @@ export function Navbar() {
     >
       <div className="max-w-5xl mx-auto flex items-center justify-between p-2 rounded-full glass-card pointer-events-auto">
         <motion.div
-          whileHover={{ scale: 1.05 }}
-          className="flex items-center gap-3 pl-4"
+          initial="rest"
+          whileHover="hover"
+          animate="rest"
+          className="flex items-center gap-3 pl-4 cursor-pointer"
         >
-          <motion.img
-            src="/assets/church_logo.jpg"
-            alt="Lifeline Logo"
-            className="h-8 w-auto rounded-full"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            whileHover={{ scale: 1.2, rotate: 0, transition: { duration: 0.3 } }}
-          />
-          <span className="font-display font-bold tracking-tighter text-lg hidden sm:block">
-            LIFELINE
-          </span>
+          <div className="relative">
+            {/* Continuous Pulsing Glow */}
+            <motion.div
+              className="absolute -inset-1 rounded-full bg-primary/40 blur-md"
+              animate={{ scale: [1, 1.3, 1], opacity: [0.4, 0.8, 0.4] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.img
+              src="/assets/church_logo.jpg"
+              alt="Lifeline Logo"
+              className="h-8 w-auto rounded-full relative z-10"
+              variants={{
+                rest: { rotate: 0, scale: 1 },
+                hover: { rotate: 360, scale: 1.1, transition: { duration: 0.6 } }
+              }}
+            />
+          </div>
+          <div className="font-display font-bold tracking-tighter text-lg hidden sm:flex">
+            {Array.from("LIFELINE").map((letter, i) => (
+              <motion.span
+                key={i}
+                variants={{
+                  rest: { y: 0, color: "#ffffff" },
+                  hover: { 
+                    y: -4, 
+                    color: "#4da8da", 
+                    transition: { type: "spring", stiffness: 300, delay: i * 0.05 } 
+                  }
+                }}
+                className="inline-block"
+              >
+                {letter}
+              </motion.span>
+            ))}
+          </div>
         </motion.div>
 
         <div className="hidden md:flex items-center gap-1">
