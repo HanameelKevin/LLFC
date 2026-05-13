@@ -19,10 +19,13 @@ export function Navbar() {
           whileHover={{ scale: 1.05 }}
           className="flex items-center gap-3 pl-4"
         >
-          <img
+          <motion.img
             src="/assets/church_logo.jpg"
             alt="Lifeline Logo"
-            className="h-8 w-auto"
+            className="h-8 w-auto rounded-full"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            whileHover={{ scale: 1.2, rotate: 0, transition: { duration: 0.3 } }}
           />
           <span className="font-display font-bold tracking-tighter text-lg hidden sm:block">
             LIFELINE
@@ -111,8 +114,31 @@ export function Hero() {
           </div>
 
           <h1 className="text-5xl md:text-8xl font-bold tracking-tighter leading-[0.9] mb-8">
-            Transforming <span className="text-primary italic">Lives</span>{' '}
-            <br /> For Jesus.
+            <motion.span
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.32, 0.72, 0, 1] }}
+              className="inline-block"
+            >
+              Transforming
+            </motion.span>{' '}
+            <motion.span
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4, ease: [0.32, 0.72, 0, 1] }}
+              className="inline-block text-primary italic"
+            >
+              Lives
+            </motion.span>
+            <br />
+            <motion.span
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6, ease: [0.32, 0.72, 0, 1] }}
+              className="inline-block"
+            >
+              For Jesus.
+            </motion.span>
           </h1>
 
           <p className="max-w-2xl mx-auto text-lg md:text-xl text-secondary/60 mb-12 leading-relaxed">
@@ -164,6 +190,8 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 + i * 0.1, duration: 0.8 }}
+              whileHover={{ y: -10, scale: 1.05 }}
+              className="cursor-pointer"
             >
               <GlassCard>
                 <div className="flex items-start gap-4">
